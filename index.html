@@ -26,16 +26,28 @@
             <ul>
               <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <div v-for="variant in variants" :key="variant.id">
+            <div
+              v-for="variant in variants"
+              :key="variant.id"
+              @mouseover="updateImage(variant.image)"
+            >
               {{ variant.color }}
             </div>
+            <p v-if="isButtonDisabled">Sold out, you cant buy more!</p>
             <!-- <button class="button" v-on:click="cart +=1">Add to Cart</button> -->
             <button
               class="button"
               @click="addToCart"
-              :disable="isButtonDisable"
+              :disabled="isButtonDisabled"
             >
               Add to Cart
+            </button>
+            <button
+              class="button"
+              @click="decrementCart"
+              :disabled="isDecrementButtonDisabled"
+            >
+              Decrese Cart
             </button>
           </div>
         </div>

@@ -1,7 +1,8 @@
 const app = Vue.createApp({
   data() {
     return {
-      isButtonDisabled: true,
+      isButtonDisabled: false,
+      isDecrementButtonDisabled: true,
       cart: 0,
       product: "Socks",
       image: "./assets/images/socks_blue.jpg",
@@ -15,7 +16,17 @@ const app = Vue.createApp({
   },
   methods: {
     addToCart() {
+      this.isDecrementButtonDisabled = !this.cart > 0;
       this.cart += 1;
+      this.isButtonDisabled = this.cart === 10;
+    },
+    updateImage(image) {
+      this.image = image;
+    },
+
+    decrementCart() {
+      this.isDecrementButtonDisabled = this.cart <= 0;
+      this.cart -= 1;
     },
   },
 });
