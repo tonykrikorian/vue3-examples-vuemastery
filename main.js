@@ -2,7 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       cart: 0,
-      onSale: true,
+      isOnSale: true,
       product: "Socks",
       brand: "Vue Mastery",
       selectedVariant: 0,
@@ -41,6 +41,12 @@ const app = Vue.createApp({
 
     inStock() {
       return this.variants[this.selectedVariant].quantity;
+    },
+
+    onSale() {
+      if (this.isOnSale && this.inStock > 0) return `${this.title} is on sale`;
+
+      return "";
     },
   },
 });
